@@ -1,5 +1,4 @@
-package com.reminder.memo.models;
-
+package com.reminder.memo.model;
 
 import jakarta.persistence.*;
 
@@ -11,7 +10,7 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long userId;
     private String username;
     private String email;
     private String names;
@@ -22,22 +21,30 @@ public class User {
     private String photo;
     private Boolean enabled;
     private String role;
+
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime createAt;
-    @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private LocalDateTime createdAt;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Suggestion> suggestions;
-    @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Message> messages;
+
+    @ManyToMany
+    @JoinTable(name = "user_matches", joinColumns = {
+            @JoinColumn(name = "user_id", referencedColumnName = "userId") }, inverseJoinColumns = @JoinColumn(name = "match_id", referencedColumnName = "matchId"))
+    private List<Match> matches;
 
     public User() {
     }
 
-    public Long getId() {
-        return id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserId(Long id) {
+        this.userId = id;
     }
 
     public String getUsername() {
@@ -120,11 +127,11 @@ public class User {
         this.role = role;
     }
 
-    public LocalDateTime getCreateAt() {
-        return createAt;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreateAt(LocalDateTime createAt) {
-        this.createAt = createAt;
+    public void setCreatedAt(LocalDateTime createAt) {
+        this.createdAt = createAt;
     }
 }

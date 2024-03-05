@@ -1,4 +1,4 @@
-package com.reminder.memo.models;
+package com.reminder.memo.model;
 
 import java.time.LocalDateTime;
 
@@ -26,7 +26,7 @@ public class Suggestion {
     private String description;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime createAt;
+    private LocalDateTime createdAt;
 
     public Suggestion() {
     }
@@ -47,12 +47,12 @@ public class Suggestion {
         this.description = description;
     }
 
-    public LocalDateTime getCreateAt() {
-        return createAt;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreateAt(LocalDateTime createAt) {
-        this.createAt = createAt;
+    public void setCreatedAt(LocalDateTime createAt) {
+        this.createdAt = createAt;
     }
 
     
