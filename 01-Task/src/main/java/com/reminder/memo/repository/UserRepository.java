@@ -10,6 +10,7 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User, Long> {
     public List<User> findByUsername(String username);
 
-    @Query("SELECT u FROM Users u WHERE u.name = ?1 AND u.lastname = ?2")
+    @Query("SELECT u FROM User u WHERE u.names = ?1 AND u.lastnames = ?2")
     public List<User> findByNameAndLastname(String name, String lastname);
+
 }
