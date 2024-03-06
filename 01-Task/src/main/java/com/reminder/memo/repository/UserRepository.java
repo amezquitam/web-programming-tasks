@@ -3,7 +3,8 @@ package com.reminder.memo.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.reminder.memo.model.User;
+import com.reminder.memo.entities.User;
+
 import java.util.List;
 
 public interface UserRepository extends JpaRepository<User, Long> {

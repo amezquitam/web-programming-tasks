@@ -1,4 +1,4 @@
-package com.reminder.memo.model;
+package com.reminder.memo.entities;
 
 import java.time.LocalDateTime;
 import java.util.List;
