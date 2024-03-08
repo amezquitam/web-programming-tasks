@@ -11,9 +11,15 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import lombok.*;
 
 @Entity
 @Table(name = "suggestions")
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
+@Getter
+@Builder
 public class Suggestion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,33 +33,5 @@ public class Suggestion {
 
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime createdAt;
-
-    public Suggestion() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createAt) {
-        this.createdAt = createAt;
-    }
-
     
 }

@@ -1,4 +1,4 @@
-package com.reminder.memo.repository;
+package com.reminder.memo;
 
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -13,6 +13,6 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 public abstract class AbstractIntegrationDBTest {
     @Container
     @ServiceConnection
-    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>();
+    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:15-alpine");
 
 }
