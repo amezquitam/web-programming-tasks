@@ -35,7 +35,7 @@ public class Message {
     private String content;
 
     @ManyToOne()
-    @JoinColumn()
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
 }

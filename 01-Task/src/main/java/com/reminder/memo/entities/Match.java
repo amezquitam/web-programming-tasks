@@ -1,6 +1,8 @@
 package com.reminder.memo.entities;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -12,6 +14,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import lombok.*;
+import org.springframework.cglib.core.Local;
 
 @Entity
 @Table(name = "matchs")
@@ -33,14 +36,14 @@ public class Match {
 
     private String province;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime date;
+    @Temporal(TemporalType.DATE)
+    private LocalDate date;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime timeStart;
+    @Temporal(TemporalType.TIME)
+    private LocalTime timeStart;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime timeEnd;
+    @Temporal(TemporalType.TIME)
+    private LocalTime timeEnd;
 
     private Integer nParticipants;
 
