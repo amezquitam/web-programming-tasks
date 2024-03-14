@@ -8,7 +8,7 @@ import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.utility.DockerImageName;
 
 @TestConfiguration(proxyBeanMethods = false)
-public class TestSocialzApplication {
+public class TestSocialZApplication {
 
 	@Bean
 	@ServiceConnection
@@ -17,7 +17,7 @@ public class TestSocialzApplication {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.from(SocialZApplication::main).with(TestSocialzApplication.class).run(args);
+		SpringApplication.from(SocialZApplication::main).with(TestSocialZApplication.class).run(args);
 	}
 
 }
