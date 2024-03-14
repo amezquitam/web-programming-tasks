@@ -17,7 +17,7 @@ public class TestSocialzApplication {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.from(SocialzApplication::main).with(TestSocialzApplication.class).run(args);
+		SpringApplication.from(SocialZApplication::main).with(TestSocialzApplication.class).run(args);
 	}
 
 }
