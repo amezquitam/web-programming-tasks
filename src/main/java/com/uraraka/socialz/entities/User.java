@@ -9,6 +9,7 @@ import lombok.Setter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -46,4 +47,10 @@ public class User {
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Message> messages;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Suggestion> suggestions;
+
+    @ManyToMany(mappedBy = "participants")
+    private Set<Match> matches;
 }
