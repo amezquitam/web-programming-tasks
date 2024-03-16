@@ -20,6 +20,8 @@ public class Message {
 
     private String content;
 
+    private String receiver;
+
     @Temporal(value = TemporalType.TIMESTAMP)
     private LocalDateTime createdAt;
 
