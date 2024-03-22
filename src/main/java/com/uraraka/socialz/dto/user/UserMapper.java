@@ -3,58 +3,22 @@ package com.uraraka.socialz.dto.user;
 import com.uraraka.socialz.dto.message.MessageMapper;
 import com.uraraka.socialz.dto.suggestion.SuggestionMapper;
 import com.uraraka.socialz.entities.User;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.factory.Mappers;
 
 import java.util.stream.Collectors;
 
-public class UserMapper {
-    public static User userDTOtoUserEntity(UserDTO userDTO) {
-        var messages = userDTO.messages().stream()
-                .map(MessageMapper::MessageDTOtoMessageEntity)
-                .collect(Collectors.toList());
+@Mapper
+public interface UserMapper {
+    UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
-        var suggestion = userDTO.suggestions().stream()
-                .map(SuggestionMapper::SuggestionDTOtoSuggestionEntity)
-                .collect(Collectors.toList());
+    @Mapping(source = "userDTO.id", target = "userId")
+    User userDTOtoUserEntity(UserDTO userDTO);
 
-        return User.builder()
-                .userId(userDTO.id())
-                .firstname(userDTO.firstname())
-                .lastname(userDTO.lastname())
-                .username(userDTO.username())
-                .email(userDTO.email())
-                .messages(messages)
-                .suggestions(suggestion)
-                .build();
-    }
-
-    public static UserDTO userEntityToUserDTO(User user) {
-        var messages = user.getMessages().stream()
-                .map(MessageMapper::MessageEntitytoMessageDTO)
-                .collect(Collectors.toList());
-
-        var suggestions = user.getSuggestions().stream()
-                .map(SuggestionMapper::SuggestionEntityToSuggestionDTO)
-                .collect(Collectors.toList());
-
-        return new UserDTO(
-                user.getUserId(),
-                user.getFirstname(),
-                user.getLastname(),
-                user.getUsername(),
-                user.getEmail(),
-                messages,
-                suggestions
-        );
-    }
-
-    public static User userToSaveDTOtoUserEntity(UserToSaveDTO userToSaveDTO) {
-        return User.builder()
-                .userId(userToSaveDTO.id())
-                .firstname(userToSaveDTO.firstname())
-                .lastname(userToSaveDTO.lastname())
-                .username(userToSaveDTO.username())
-                .email(userToSaveDTO.email())
-                .build();
-    }
+    @Mapping(source = "user.userId", target = "id")
+    UserDTO userEntityToUserDTO(User user);
+    @Mapping(source = "userToSaveDTO.id", target = "userId")
+    User userToSaveDTOtoUserEntity(UserToSaveDTO userToSaveDTO);
 
 }

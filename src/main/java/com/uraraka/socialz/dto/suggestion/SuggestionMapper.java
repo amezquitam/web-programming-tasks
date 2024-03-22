@@ -1,16 +1,18 @@
 package com.uraraka.socialz.dto.suggestion;
 
+import com.uraraka.socialz.dto.message.MessageMapper;
 import com.uraraka.socialz.entities.Suggestion;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.factory.Mappers;
 
-public class SuggestionMapper {
-    public static Suggestion SuggestionDTOtoSuggestionEntity(SuggestionDTO suggestionDTO) {
-        return Suggestion.builder()
-                .suggestionId(suggestionDTO.id())
-                .description(suggestionDTO.description())
-                .build();
-    }
+@Mapper
+public interface SuggestionMapper {
+    SuggestionMapper INSTANCE = Mappers.getMapper(SuggestionMapper.class);
 
-    public static SuggestionDTO SuggestionEntityToSuggestionDTO(Suggestion suggestion) {
-        return new SuggestionDTO(suggestion.getSuggestionId(), suggestion.getDescription());
-    }
+    @Mapping(source = "suggestionDTO.id", target = "suggestionId")
+    Suggestion SuggestionDTOtoSuggestionEntity(SuggestionDTO suggestionDTO);
+
+    @Mapping(source = "suggestion.suggestionId", target = "id")
+    SuggestionDTO SuggestionEntityToSuggestionDTO(Suggestion suggestion);
 }
