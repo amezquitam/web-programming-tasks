@@ -1,17 +1,17 @@
 package com.uraraka.socialz.dto.message;
 
 import com.uraraka.socialz.entities.Message;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.factory.Mappers;
 
-public class MessageMapper {
-    public static Message MessageDTOtoMessageEntity(MessageDTO messageDTO) {
-        return Message.builder()
-                .id(messageDTO.id())
-                .content(messageDTO.content())
-                .receiver(messageDTO.receiver())
-                .build();
-    }
+@Mapper
+public interface MessageMapper {
+    MessageMapper INSTANCE = Mappers.getMapper(MessageMapper.class);
 
-    public static MessageDTO MessageEntitytoMessageDTO(Message message) {
-        return new MessageDTO(message.getId(), message.getContent(), message.getReceiver());
-    }
+    @Mapping(source = "messageDTO.id", target = "messageId")
+    Message MessageDTOtoMessageEntity(MessageDTO messageDTO);
+
+    @Mapping(source = "message.messageId", target = "id")
+    MessageDTO MessageEntitytoMessageDTO(Message message);
 }
