@@ -9,9 +9,7 @@ import org.mapstruct.factory.Mappers;
 public interface MessageMapper {
     MessageMapper INSTANCE = Mappers.getMapper(MessageMapper.class);
 
-    @Mapping(source = "messageDTO.id", target = "messageId")
     Message MessageDTOtoMessageEntity(MessageDTO messageDTO);
 
-    @Mapping(source = "message.messageId", target = "id")
     MessageDTO MessageEntitytoMessageDTO(Message message);
 }
